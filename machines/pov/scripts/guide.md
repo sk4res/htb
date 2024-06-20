@@ -60,7 +60,7 @@ Lanzamos whatweb para determinar las tecnologias que se usan
 whatweb http://10.129.108.177
 ```
 Obtenemos:
-> [!Obtenemos]
+> [!NOTE]
 > http://10.129.108.177 [200 OK] Bootstrap, Country[RESERVED][ZZ], Email[sfitz@pov.htb], HTML5, HTTPServer[Microsoft-IIS/10.0], IP[10.129.108.177], Microsoft-IIS[10.0], Script, Title[pov.htb], X-Powered-By[ASP.NET]
 
 ```
