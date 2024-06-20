@@ -1,4 +1,4 @@
-#<code style="color : Aquamarine">POV</code>
+## <code style="color : Aquamarine">POV</code>
 
 
 ```shell
@@ -19,7 +19,7 @@ sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn  10.129.108.177 -oG allPort
 
 Obtenemos:
 
-```shell
+```
 ┌─[user@parrot]─[~/htb/machines/pov/nmap]
 └──╼ $cat allPorts 
 # Nmap 7.94SVN scan initiated Thu Jun 20 17:49:58 2024 as: nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn -oG allPorts 10.129.108.177
