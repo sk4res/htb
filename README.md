@@ -12,8 +12,20 @@ rtt min/avg/max/mdev = 109.900/109.900/109.900/0.000 ms
 
 
 [Markdown](https://www.w3schools.io/file/markdown-links/)
-[emojis](https://gist.github.com/rxaviers/7360908)
+[Markdown](https://gist.github.com/rxaviers/7360908)
 
+
+
+_italic text_
+<!---
+comments syntax
+--->
+***  bold text**
+
+
+{::comment}
+comment text
+{:/comment}
 
 <details>
 
