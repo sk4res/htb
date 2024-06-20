@@ -7,6 +7,7 @@
 </style>
 
 ```shell
+cd /htb/machines/pov/nmap
 ping 10.129.108.177
 
 ```
@@ -32,4 +33,46 @@ Obtenemos:
 Host: 10.129.108.177 ()	Status: Up
 Host: 10.129.108.177 ()	Ports: 80/open/tcp//http///	Ignored State: filtered (65534)
 # Nmap done at Thu Jun 20 17:50:25 2024 -- 1 IP address (1 host up) scanned in 26.50 seconds
+```
+Analizamos mas el puerto 80
+```javascript
+sudo nmap -sCV -p80 10.129.108.177 -oN targeted
+```
+Resultados
+```
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-06-20 21:25 UTC
+Nmap scan report for 10.129.108.177
+Host is up (0.11s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 10.0
+|_http-title: pov.htb
+|_http-server-header: Microsoft-IIS/10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 13.74 seconds
+```
+Lanzamos whatweb para determinar las tecnologias que se usan
+```javascript
+whatweb http://10.129.108.177
+```
+Obtenemos:
+``` bash
+http://10.129.108.177 [200 OK] Bootstrap, Country[RESERVED][ZZ], Email[sfitz@pov.htb], HTML5, HTTPServer[Microsoft-IIS/10.0], IP[10.129.108.177], Microsoft-IIS[10.0], Script, Title[pov.htb], X-Powered-By[ASP.NET]
+```
+
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
+```
 ```
