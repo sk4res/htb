@@ -75,34 +75,33 @@ gobuster dir -u http://pov.htb -w /usr/share/seclists/Discovery/Web-Content/dire
 ```
 Obtenemos:
 
-
-> [!NOTE]
-> ===============================================================
-> Starting gobuster in directory enumeration mode
-> ===============================================================
-> /img                  (Status: 301) [Size: 142] [--> http://pov.htb/img/]
-> /css                  (Status: 301) [Size: 142] [--> http://pov.htb/css/]
-> /js                   (Status: 301) [Size: 141] [--> http://pov.htb/js/]
-> /IMG                  (Status: 301) [Size: 142] [--> http://pov.htb/IMG/]
-> /*checkout*           (Status: 400) [Size: 3420]
-> /CSS                  (Status: 301) [Size: 142] [--> http://pov.htb/CSS/]
-> /Img                  (Status: 301) [Size: 142] [--> http://pov.htb/Img/]
-> /JS                   (Status: 301) [Size: 141] [--> http://pov.htb/JS/]
-> /*docroot*            (Status: 400) [Size: 3420]
+```bash
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/img                  (Status: 301) [Size: 142] [--> http://pov.htb/img/]
+/css                  (Status: 301) [Size: 142] [--> http://pov.htb/css/]
+/js                   (Status: 301) [Size: 141] [--> http://pov.htb/js/]
+/IMG                  (Status: 301) [Size: 142] [--> http://pov.htb/IMG/]
+/*checkout*           (Status: 400) [Size: 3420]
+/CSS                  (Status: 301) [Size: 142] [--> http://pov.htb/CSS/]
+/Img                  (Status: 301) [Size: 142] [--> http://pov.htb/Img/]
+/JS                   (Status: 301) [Size: 141] [--> http://pov.htb/JS/]
+/*docroot*            (Status: 400) [Size: 3420]
 
 ```bash
 wfuzz -c --hh=12330 -t 200 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H "Host: FUZZ.pov.htb" http://pov.htb
 
 ```
->[!NOTE]
-> =====================================================================
-> ID           Response   Lines    Word       Chars       Payload
-> =====================================================================
+```bash
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload
+=====================================================================
 
-> 000000019:   302        1 L      10 W       152 Ch      "dev"   
-> 000009532:   400        6 L      26 W       334 Ch      "#www"      
-> 000010581:   400        6 L      26 W       334 Ch      "#mail"     
-> 000047706:   400        6 L      26 W       334 Ch      "#smtp" 
+000000019:   302        1 L      10 W       152 Ch      "dev"                                                               
+000009532:   400        6 L      26 W       334 Ch      "#www"                                                              
+000010581:   400        6 L      26 W       334 Ch      "#mail"                                                             
+000047706:   400        6 L      26 W       334 Ch      "#smtp" 
 ```
 ```
 ```
