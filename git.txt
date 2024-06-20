@@ -1,0 +1,12 @@
+git clone https://github.com/sk4res/htb.git
+
+
+git remote add origin https://<token>@github.com/sk4res/htb
+
+git add .
+git commit -m "comment git"
+git push -u origin main
+
+
+git reset --hard HEAD
+git pull
