@@ -1,6 +1,7 @@
 ## <code style="color : Aquamarine">HTB - NOTES</code>
 Public notes for HTB machines
-```bash
+
+```javascript
 PING 10.129.108.177 (10.129.108.177) 56(124) bytes of data.
 64 bytes from 10.129.108.177: icmp_seq=1 ttl=127 time=110 ms
 
