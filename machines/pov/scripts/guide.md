@@ -1,8 +1,10 @@
 ## <code style="color : Aquamarine">POV</code>
 
-.codenobutton button {
-display: none;
+<style>
+    .codenobutton button {
+        display: none;
 }
+</style>
 
 ```shell
 ping 10.129.108.177
