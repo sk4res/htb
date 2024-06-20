@@ -13,7 +13,7 @@ ping -c 1 10.129.108.177 -R
 
 Ejecutamos nmap para scanear todos los puertos y guardarlo en un archivo allPorts
 
-```shell
+```javascript
 sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn  10.129.108.177 -oG allPorts
 ```
 
