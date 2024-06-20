@@ -15,6 +15,20 @@ rtt min/avg/max/mdev = 109.900/109.900/109.900/0.000 ms
 [Markdown](https://gist.github.com/rxaviers/7360908)
 
 
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 
 _italic text_
 <!---
