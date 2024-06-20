@@ -63,11 +63,27 @@ Obtenemos:
 > [!NOTE]
 > http://10.129.108.177 [200 OK] Bootstrap, Country[RESERVED][ZZ], Email[sfitz@pov.htb], HTML5, HTTPServer[Microsoft-IIS/10.0], IP[10.129.108.177], Microsoft-IIS[10.0], Script, Title[pov.htb], X-Powered-By[ASP.NET]
 
+```bash
+ping -c 1 pov.htb
+echo "10.129.108.177   pov.htb" >> /etc/hosts
+
 ```
+Nos vamos a la url: http://pov.htb y no observamos algo extranio, y analizaremos sub directorio, si no tenemos el diccionario se declist lo instalamos.
+```bash
+sudo apt install seclists
+gobuster dir -u http://pov.htb -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 --no-error
 ```
+Obtenemos:
+
 ```
-```
-```
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload
+=====================================================================
+
+000000019:   302        1 L      10 W       152 Ch      "dev"                                                               
+000009532:   400        6 L      26 W       334 Ch      "#www"                                                              
+000010581:   400        6 L      26 W       334 Ch      "#mail"                                                             
+000047706:   400        6 L      26 W       334 Ch      "#smtp" 
 ```
 ```
 ```
