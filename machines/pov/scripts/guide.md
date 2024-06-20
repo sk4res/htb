@@ -103,9 +103,28 @@ ID           Response   Lines    Word       Chars       Payload
 000010581:   400        6 L      26 W       334 Ch      "#mail"                                                             
 000047706:   400        6 L      26 W       334 Ch      "#smtp" 
 ```
+Agregamos el subdominio dev al /etc/hosts y lanzamos curl
+```bash
+echo "10.129.108.177   dev.pov.htb" >> /etc/hosts
+curl -s -X GET http://dev.pov.htb
 ```
+
+Obtenemos
+
+```html
+<head><title>Document Moved</title></head>
+<body><h1>Object Moved</h1>This document may be found <a HREF="http://dev.pov.htb/portfolio/">here</a></body>
 ```
+
+Nos redirige al portafolio y abrimos para investigar el sitio, usamos whatweb para saber
+
+```bash
+whatweb http://dev.pov.htb
 ```
-```
-```
+
+Obtenemos
+
+```h
+http://dev.pov.htb [302 Found] Country[RESERVED][ZZ], HTTPServer[Microsoft-IIS/10.0], IP[10.129.108.177], Microsoft-IIS[10.0], RedirectLocation[http://dev.pov.htb/portfolio/], Title[Document Moved], X-Powered-By[ASP.NET]
+http://dev.pov.htb/portfolio/ [200 OK] ASP_NET[4.0.30319], Bootstrap, Country[RESERVED][ZZ], HTML5, HTTPServer[Microsoft-IIS/10.0], IP[10.129.108.177], JQuery[3.4.1], Meta-Author[Devcrud], Microsoft-IIS[10.0], Script, Title[dev.pov.htb], X-Powered-By[ASP.NET]
 ```
