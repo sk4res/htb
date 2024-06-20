@@ -46,4 +46,4 @@ I need to highlight these ==very important words==.
 
 Function | MySQL / MariaDB | PostgreSQL | SQLite
 :------------ | :-------------| :-------------| :-------------
-substr | :heavy_check_mark: |  :white_check_mark: | :heavy_check_mark:
+substr | :heavy_check_mark: |  :white_check_mark: | :x:
